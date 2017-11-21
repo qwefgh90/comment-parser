@@ -14,6 +14,7 @@ import scala.collection.JavaConverters;
 
 /**
  * CommentParser provides static methods for extracting comments.
+ * <br>Supported languages are JAVA, PY, C, CPP, C_HEADER, CPP_HEADER, SCALA, RUBY, GO, JS, HTML, BAT, SH, XML, TEXT, MD, ETC.
  */
 public class CommentParser{
 
@@ -35,22 +36,22 @@ public class CommentParser{
     /**
      * Extract comments from a stream with a resource name. Default charset is utf-8.
      * @param is a source stream
-     * @param name a name about a resource name
+     * @param resourceName a name about a resource name
      * @return a list of <b>CommentResult</b>
      */
-    public static Optional<java.util.List<CommentResult>> extractComments(InputStream is, String name){
-        return extractComments(is, name, StandardCharsets.UTF_8);
+    public static Optional<java.util.List<CommentResult>> extractComments(InputStream is, String resourceName){
+        return extractComments(is, resourceName, StandardCharsets.UTF_8);
     }
     
     /**
      * Extract comments from a stream with a resource name.
      * @param is a source stream
-     * @param name a name of a resource
+     * @param resourceName a name of a resource
      * @param charset a charset of a resource
      * @return a list of <b>CommentResult</b>
      */
-    public static Optional<java.util.List<CommentResult>> extractComments(InputStream is, String fileName, Charset charset) {
-        Option<scala.collection.immutable.List<ExtractResult>> scalaReturn = Extractor.extractCommentsByStream(is, fileName, charset);
+    public static Optional<java.util.List<CommentResult>> extractComments(InputStream is, String resourceName, Charset charset) {
+        Option<scala.collection.immutable.List<ExtractResult>> scalaReturn = Extractor.extractCommentsByStream(is, resourceName, charset);
         return Optional.ofNullable(scalaReturn.map((scala.collection.immutable.List<ExtractResult> list) -> {
                     java.util.List<ExtractResult> javaList = JavaConverters.seqAsJavaList(list);
                     return javaList.stream().map((ExtractResult result) -> {
@@ -62,23 +63,23 @@ public class CommentParser{
     /**
      * Extract comments from a uri with a resource name.
      * @param uri a source uri
-     * @param name a name of a resource
+     * @param resourceName a name of a resource
      * @return a list of <b>CommentResult</b>
      */
-    public static Optional<java.util.List<CommentResult>> extractComments(URI uri, String fileName) {
-        return extractComments(uri, fileName, StandardCharsets.UTF_8);
+    public static Optional<java.util.List<CommentResult>> extractComments(URI uri, String resourceName) {
+        return extractComments(uri, resourceName, StandardCharsets.UTF_8);
     }
     
     /**
      * Extract comments from a uri with a resource name. Default charset is utf-8.
      * @param uri a source uri
-     * @param name a name of a resource
+     * @param resourceName a name of a resource
      * @param charset a charset of a resource
      * @return a list of <b>CommentResult</b>
      */
-    public static Optional<java.util.List<CommentResult>> extractComments(URI uri, String fileName, Charset charset) {
+    public static Optional<java.util.List<CommentResult>> extractComments(URI uri, String resourceName, Charset charset) {
         //StandardCharsets.UTF_8
-        Option<scala.collection.immutable.List<ExtractResult>> scalaReturn = Extractor.extractComments(uri, fileName, charset);
+        Option<scala.collection.immutable.List<ExtractResult>> scalaReturn = Extractor.extractComments(uri, resourceName, charset);
         return Optional.ofNullable(scalaReturn.map((scala.collection.immutable.List<ExtractResult> list) -> {
                     java.util.List<ExtractResult> javaList = JavaConverters.seqAsJavaList(list);
                     return javaList.stream().map((ExtractResult result) -> {
