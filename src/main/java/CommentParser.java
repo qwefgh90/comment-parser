@@ -11,10 +11,12 @@ import java.io.InputStream;
 
 import scala.Option;
 import scala.collection.JavaConverters;
+import scala.runtime.AbstractFunction1;
 
 /**
  * CommentParser provides static methods for extracting comments.
- * <br>Supported languages are JAVA, PY, C, CPP, C_HEADER, CPP_HEADER, SCALA, RUBY, GO, JS, HTML, BAT, SH, XML, TEXT, MD, ETC.
+ * <br>Supported languages are JAVA, PY, C, CPP, C_HEADER, CPP_HEADER, SCALA, RUBY, GO, JS, HTML, BAT, SH, XML, TEXT, MD.
+ * <br>None is provided for unsupported languages.
  */
 public class CommentParser{
 
@@ -52,12 +54,7 @@ public class CommentParser{
      */
     public static Optional<java.util.List<CommentResult>> extractComments(InputStream is, String resourceName, Charset charset) {
         Option<scala.collection.immutable.List<ExtractResult>> scalaReturn = Extractor.extractCommentsByStream(is, resourceName, charset);
-        return Optional.ofNullable(scalaReturn.map((scala.collection.immutable.List<ExtractResult> list) -> {
-                    java.util.List<ExtractResult> javaList = JavaConverters.seqAsJavaList(list);
-                    return javaList.stream().map((ExtractResult result) -> {
-                            return new CommentResult(result.startOffset(), result.comment(), result.uri());
-                        }).collect(Collectors.toList());
-                }).getOrElse(null));
+        return Optional.ofNullable(scalaReturn.map(func1).getOrElse(null));
     }
 
     /**
@@ -80,11 +77,17 @@ public class CommentParser{
     public static Optional<java.util.List<CommentResult>> extractComments(URI uri, String resourceName, Charset charset) {
         //StandardCharsets.UTF_8
         Option<scala.collection.immutable.List<ExtractResult>> scalaReturn = Extractor.extractComments(uri, resourceName, charset);
-        return Optional.ofNullable(scalaReturn.map((scala.collection.immutable.List<ExtractResult> list) -> {
-                    java.util.List<ExtractResult> javaList = JavaConverters.seqAsJavaList(list);
-                    return javaList.stream().map((ExtractResult result) -> {
-                            return new CommentResult(result.startOffset(), result.comment(), result.uri());
-                        }).collect(Collectors.toList());
-                }).getOrElse(null));
+        return Optional.ofNullable(scalaReturn.map(func1).getOrElse(null));
     }
+
+
+    private static final AbstractFunction1<scala.collection.immutable.List<ExtractResult>, java.util.List<CommentResult>> func1 = new AbstractFunction1<scala.collection.immutable.List<ExtractResult>, java.util.List<CommentResult>>(){
+            @Override
+            public java.util.List<CommentResult> apply(scala.collection.immutable.List<ExtractResult> list) {
+                java.util.List<ExtractResult> javaList = JavaConverters.seqAsJavaListConverter(list).asJava();
+                return javaList.stream().map((ExtractResult result) -> {
+                        return new CommentResult(result.startOffset(), result.comment(), result.uri());
+                    }).collect(Collectors.toList());
+            }
+        };
 }

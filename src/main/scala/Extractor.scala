@@ -108,8 +108,7 @@ private[commentparser] object Extractor {
         parseShType(streamReader)
       }
       case _ => {
-        val chars = streamToArray(streamReader)
-        Some(List(CommentResult(0, chars)))
+        None
       }
     }
   }

@@ -6,6 +6,7 @@ import scala.util.matching.Regex
 
 import Boilerplate._
 import com.typesafe.scalalogging._
+import scala.language.implicitConversions
 
 /** Object contains various comment parsers. */
 private[commentparser] object Parser{

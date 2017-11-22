@@ -8,6 +8,7 @@ import scala.collection.mutable._
 import java.security.InvalidParameterException
 import io.github.qwefgh90.jsearch.JSearch
 import java.nio.file.Files
+import scala.language.implicitConversions
 
 object Boilerplate {
   
