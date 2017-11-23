@@ -4,7 +4,6 @@ The Comment Parser supports various languages based on FSM. It's written by scal
 ## Prerequisites
 
 - Java 1.8
-- Scala 2.11 or 2.12
 
 ## Getting comment parser
 
