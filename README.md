@@ -40,9 +40,9 @@ or
 
 ## Using Comment Parser
 
-CommentParser is a main class to extract comments from various files. Import ` io.github.qwefgh90.commentparser` package to your sources to use CommentParser.
+CommentParser is a main class to extract comments from various files. Import ` io.github.qwefgh90.commentparser` package to your sources to use CommentParser. Also, there is a inner `CommentParser.CommentResult` class containing a result.
 
-It has four static methods to do that. Also, there is a inner `CommentParser.CommentResult` class containing a result.
+It has four static methods to do that.
 
 You can pass `URI` object to first parameter. 
 ```java
