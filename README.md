@@ -40,10 +40,10 @@ or
 
 ## Using Comment Parser
 
-CommentParser is a main class to extract comments from various files. It has four static methods to do that. 
+CommentParser is a main class to extract comments from various files. It has four static methods to do that. Import ` io.github.qwefgh90.commentparser` package to your sources to use CommentParser.
 
 You can pass `URI` object to first parameter. 
-```
+```java
 import io.github.qwefgh90.commentparser.CommentParser;
 import java.nio.file.Paths;
 CommentParser.extractComments(Paths.get("C:\\java.java").toUri(), "java.java");
@@ -51,7 +51,7 @@ CommentParser.extractComments(Paths.get("C:\\java.java").toUri(), "java.java");
 
 `InputStream` object can be used to first parameter.
 
-```
+```java
 import io.github.qwefgh90.commentparser.CommentParser;
 import java.nio.file.Paths;
 import java.io.InputStream;
@@ -63,7 +63,7 @@ is.close();
 ```
 
 You can pass `Charset` object to third parameter optionally. 
-```
+```java
 import io.github.qwefgh90.commentparser.CommentParser;
 import java.nio.file.Paths;
 import java.nio.charset.StandardCharsets;
