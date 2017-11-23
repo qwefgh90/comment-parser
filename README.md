@@ -42,12 +42,14 @@ or
 
 CommentParser is a main class to extract comments from various files. It has four static methods to do that. 
 
-You can pass `URI` or `InputStream` object to first parameter. 
+You can pass `URI` object to first parameter. 
 ```
 import io.github.qwefgh90.commentparser.CommentParser;
 import java.nio.file.Paths;
 CommentParser.extractComments(Paths.get("C:\\java.java").toUri(), "java.java");
 ```
+
+`InputStream` object can be used to first parameter.
 
 ```
 import io.github.qwefgh90.commentparser.CommentParser;
