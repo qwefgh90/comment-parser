@@ -33,7 +33,8 @@ lazy val root = (project in file(".")).
       val classPathStr = classPathDeps.mkString(";") + ";" + (classDirectory in Compile).value
       val apiPathStr = (classDirectory in Compile).value + """\..\api"""
       deleteRecursively(Paths.get(apiPathStr).toFile)
-      Process("javadoc" :: "-classpath" :: classPathStr :: "-d" :: (classDirectory in Compile).value + "\\..\\api" :: """src\main\java\CommentParser.java""" :: Nil) !
+      val proc1 = Process("javadoc" :: "-classpath" :: classPathStr :: "-d" :: (classDirectory in Compile).value + "\\..\\api" :: """src\main\java\CommentParser.java""" :: Nil) !
+      val proc2 = Process("javadoc" :: "-classpath" :: classPathStr :: "-d" :: (baseDirectory).value + "\\docs" :: """src\main\java\CommentParser.java""" :: Nil) !
     },
     doc in Compile := {
       val result = (doc in Compile).value
