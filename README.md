@@ -19,7 +19,7 @@ Add it to your sbt build definition:
 libraryDependencies += "io.github.qwefgh90" %% "comment-parser" % "0.1.0"
 ```
 
-Add it to your maven pom file:
+Add one of them to your maven pom file:
 ```
 <dependency>
     <groupId>io.github.qwefgh90</groupId>
