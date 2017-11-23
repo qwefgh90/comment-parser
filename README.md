@@ -1,7 +1,44 @@
-# comment-parser
-The comment parser supports various languages based on FSM. It's written by scala and java.
+# Comment Parser
+The Comment Parser supports various languages based on FSM. It's written by scala and java.
 
-### Supported Languages
+## Prerequisites
+
+- Java 1.8
+- Scala 2.11 or 2.12
+
+## Getting comment parser
+
+Comment Parser is published to Sonatype OSS and Maven Central:
+
+- Group id / organization: *io.github.qwefgh90*
+- Artifact id / name: *comment-parser*
+- Latest version is *0.1.0*
+
+Add it to your sbt build definition:
+```
+libraryDependencies += "io.github.qwefgh90" %% "comment-parser" % "0.1.0"
+```
+
+Add it to your maven pom file:
+```
+<dependency>
+    <groupId>io.github.qwefgh90</groupId>
+    <artifactId>comment-parser_2.11</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
+
+or
+
+```
+<dependency>
+    <groupId>io.github.qwefgh90</groupId>
+    <artifactId>comment-parser_2.11</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
+
+## Supported Languages
 
 - JAVA
 - PY
@@ -21,13 +58,7 @@ The comment parser supports various languages based on FSM. It's written by scal
 - MD
 - ETC
 
-### Build environment
-
-- Java 1.8
-- Scala 2.12
-- Sbt 1.0
-
-### Compile & Test
+## Compile & Test
 
 - sbt compile
 - sbt test
