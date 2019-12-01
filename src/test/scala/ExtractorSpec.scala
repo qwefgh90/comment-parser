@@ -312,22 +312,23 @@ usage:"""))
   }
 
   "UniversalDetector" should "detect currect encoding" in {
-    val uri = new URI("https://raw.githubusercontent.com/qwefgh90/test/master/euc_kr.txt")
-    val is = uri.toURL.openStream()
-    val buf = new ArrayBuffer[Byte]()
+    val eucKr = getClass.getResource("/euc-kr.txt").toURI
+    readUri(eucKr)(is => {
+      val buf = new ArrayBuffer[Byte]()
+      var byte = is.read()
+      while(byte != -1){
+        buf += byte
+        byte = is.read()
+      }
+      val immuBuf = buf.toArray
+      val detector = new UniversalDetector(null);
+      detector.handleData(immuBuf, 0, immuBuf.length);
+      detector.dataEnd();
+      val detectedCharset = detector.getDetectedCharset();
+      assertResult("EUC-KR")(detectedCharset)
+      is.close()
 
-    var byte = is.read()
-    while(byte != -1){
-      buf += byte
-      byte = is.read()
-    }
-    val immuBuf = buf.toArray
-    val detector = new UniversalDetector(null);
-	detector.handleData(immuBuf, 0, immuBuf.length);
-	detector.dataEnd();
-	val detectedCharset = detector.getDetectedCharset();
-    assert(detectedCharset equals "EUC-KR")
-    is.close()
+    })
   }
 
   "getContentType() " should "print types" in {

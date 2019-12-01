@@ -18,7 +18,7 @@ lazy val root = (project in file(".")).
     )),
     name := "comment-parser",
     libraryDependencies += "io.github.qwefgh90" % "jsearch" % "0.3.0" exclude("org.slf4j", "slf4j-log4j12") exclude("log4j", "log4j"),
-    libraryDependencies += "com.googlecode.juniversalchardet" % "juniversalchardet" % "1.0.3",
+    libraryDependencies += "com.github.albfernandez" % "juniversalchardet" % "2.3.0",
     libraryDependencies += "org.slf4j" % "slf4j-simple" % "1.7.25" % Test,
     libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0",
     libraryDependencies +=  "org.scalatest" %% "scalatest" % "3.0.3" % Test,
